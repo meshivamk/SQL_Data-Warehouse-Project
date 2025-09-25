@@ -115,4 +115,3 @@ Begin
 end
 ;
 
-exec bronze.load_data
