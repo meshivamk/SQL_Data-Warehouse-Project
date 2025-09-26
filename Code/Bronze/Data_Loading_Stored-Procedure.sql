@@ -12,7 +12,7 @@ Begin
 	declare @starttime datetime, @Endtime datetime, @batchstarttime datetime, @batchendtime datetime; -- Variable for time completion
 	Begin try
 		print '============================================================';
-		print 'INSERTION STARTS';
+		print 'INSERTION IN BRONZE LAYER STARTS';
 	set @batchstarttime = getdate() -- Set Batch start Starttime 
 		set @starttime = getdate() -- Set Individual Table starttime (Can be done for Each Table) 
 		truncate table bronze.crm_cust_info;
@@ -34,6 +34,7 @@ Begin
 		truncate table bronze.crm_prd_info;
 		print '------------------------------------------------------------';
 		print 'Inserting data into bronze.crm_prd_info, Insertion Started';
+		set @starttime = getdate()
 		bulk insert bronze.crm_prd_info
 		from 'C:\Users\Lenovo\Downloads\SQL\SQL Project\sql-data-warehouse-project- Baara\datasets\source_crm\prd_info.csv'
 			with(
@@ -41,12 +42,15 @@ Begin
 			fieldterminator = ',',
 			tablock
 			);
-		print char(13) + 'Insertion into bronze.crm_prd_info completed';
+		set @Endtime = getdate()
+		print char(13) + 'Insertion into bronze.crm_prd_info completed'+ char(13);
+		print 'Time taken for insertion is ' + cast(datediff(second, @starttime, @endtime) as varchar) + ' seconds';
 		print '------------------------------------------------------------' + char(13);
 
 		truncate table bronze.crm_sales_details;
 		print '------------------------------------------------------------';
 		print 'Inserting data into bronze.crm_sales_details, Insertion Started';
+		set @starttime = getdate()
 		bulk insert bronze.crm_sales_details
 		from 'C:\Users\Lenovo\Downloads\SQL\SQL Project\sql-data-warehouse-project- Baara\datasets\source_crm\sales_details.csv'
 			with(
@@ -54,13 +58,16 @@ Begin
 			fieldterminator = ',',
 			tablock
 			);
-		print char(13) + 'Insertion into bronze.crm_sales_details completed';
+		set @Endtime = getdate()
+		print char(13) + 'Insertion into bronze.crm_sales_details completed'+ char(13);
+		print 'Time taken for insertion is ' + cast(datediff(second, @starttime, @endtime) as varchar) + ' seconds';
 		print '------------------------------------------------------------' + char(13);
 
 
 		truncate table bronze.erp_loc_a101;
 		print '------------------------------------------------------------';
 		print 'Inserting data into bronze.erp_loc_a101, Insertion Started' ;
+		set @starttime = getdate()
 		bulk insert bronze.erp_loc_a101
 		from 'C:\Users\Lenovo\Downloads\SQL\SQL Project\sql-data-warehouse-project- Baara\datasets\source_erp\LOC_A101.csv'
 			with(
@@ -68,13 +75,16 @@ Begin
 			fieldterminator = ',',
 			tablock
 			);
-		print char(13) + 'Insertion into bronze.erp_loc_a101 completed';
+		set @Endtime = getdate()
+		print char(13) + 'Insertion into bronze.erp_loc_a101 completed' + char(13);
+		print 'Time taken for insertion is ' + cast(datediff(second, @starttime, @endtime) as varchar) + ' seconds';
 		print '------------------------------------------------------------' + char(13);
 
 
 		truncate table bronze.erp_cust_az12;
 		print '------------------------------------------------------------';
 		print 'Inserting data into bronze.erp_cust_az12, Insertion Started' ;
+		set @starttime = getdate()
 		bulk insert bronze.erp_cust_az12
 		from 'C:\Users\Lenovo\Downloads\SQL\SQL Project\sql-data-warehouse-project- Baara\datasets\source_erp\CUST_AZ12.csv'
 			with(
@@ -82,7 +92,9 @@ Begin
 			fieldterminator = ',',
 			tablock
 			);
-		print char(13) + 'Insertion into bronze.erp_cust_az12 completed';
+		set @Endtime = getdate()
+		print char(13) + 'Insertion into bronze.erp_cust_az12 completed'+ char(13);
+		print 'Time taken for insertion is ' + cast(datediff(second, @starttime, @endtime) as varchar) + ' seconds';
 		print '------------------------------------------------------------' + char(13);
 
 
@@ -90,6 +102,7 @@ Begin
 		truncate table bronze.erp_px_cat_g1v2;
 		print '------------------------------------------------------------';
 		print 'Inserting data into bronze.erp_px_cat_g1v2, Insertion Started' ;
+		set @starttime = getdate()
 		bulk insert bronze.erp_px_cat_g1v2
 		from 'C:\Users\Lenovo\Downloads\SQL\SQL Project\sql-data-warehouse-project- Baara\datasets\source_erp\PX_CAT_G1V2.csv'
 			with(
@@ -97,9 +110,12 @@ Begin
 			fieldterminator = ',',
 			tablock
 			);
-		print char(13) + 'Insertion into bronze.erp_px_cat_g1v2 completed' +char(13);
+		set @Endtime = getdate()
 	set @batchendtime = getdate() -- Set Batch Endtime
-		print 'INSERTION COMPLETED';
+		print char(13) + 'Insertion into bronze.erp_px_cat_g1v2 completed' +char(13);
+		print 'Time taken for insertion is ' + cast(datediff(second, @starttime, @endtime) as varchar) + ' seconds'+ char(13);
+		print '------------------------------------------------------------';
+		print 'INSERTION IN BRONZE LAYER COMPLETED';
 		print 'Total time taken is ' + cast(datediff(second, @batchstarttime, @batchendtime) as nvarchar) + ' seconds';
 		print '================================================================' + char(13);
 	end try
