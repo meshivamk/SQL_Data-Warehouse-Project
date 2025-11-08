@@ -1,7 +1,7 @@
 # SQL Data Warehouse Project (Medallion Architecture)
 
-This project demonstrates the end-to-end design and implementation of a **Data Warehouse** using the **Medallion Architecture** — Bronze, Silver, and Gold layers — entirely built with **SQL Server**.  
-It covers data ingestion, transformation, quality checks, modeling, and documentation — reflecting a real-world data engineering workflow.
+This project demonstrates the end-to-end design and implementation of a **Data Warehouse** using the **Medallion Architecture** — Bronze, Silver, and Gold layers, entirely built with **SQL Server**.  
+It covers data ingestion, transformation, quality checks, modeling, and documentation, reflecting a real-world data engineering workflow.
 
 ---
 
