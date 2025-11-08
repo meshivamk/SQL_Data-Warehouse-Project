@@ -20,6 +20,7 @@ The repository follows the **Medallion Architecture** pattern:
 ---
 
 ## 📂 Repository Structure
+```bash
 SQL-DataWarehouse/
 │
 ├── Code/
