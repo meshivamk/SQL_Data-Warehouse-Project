@@ -64,9 +64,9 @@ SQL-DataWarehouse/
 │ ├── source_erp/
 │ │ ├── CUST_AZ12.csv
 │ │ └── LOC_A101.csv
-│```bash
+│
 └── README.md
-
+```
 ---
 
 ## ⚙️ Bronze Layer — Raw Data Ingestion
